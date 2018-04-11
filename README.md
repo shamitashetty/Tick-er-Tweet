@@ -60,11 +60,8 @@ Progress
 Social Network APIs
 ---------------
 * Twitter Search API
-* Facebook Graph API
-
-Computation Engines
--------------------
-Wolfram Alpha
+* Yahoo Fnance API
+* Google Finance API
 
 Team Members
 ------------
