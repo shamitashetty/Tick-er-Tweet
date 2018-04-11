@@ -9,15 +9,11 @@ Sentiment Analysis is the field of study that analyzes people's opinions, sentim
 - [Contents](#contents)
 - [Objective](#objective)
 - [Introduction](#introduction)
-- [Reference](#Reference)
+- [References](#References)
 - [Open Source Implementations](#open-source-implementations)
-    - [NodeJS](#nodejs)
     - [Java](#java)
     - [Python](#python)
     - [R](#r)
-    - [Golang](#golang)
-    - [Ruby](#ruby)
-    - [CSharp](#csharp)
 - [Acknowledgment](#Acknowledgment)    
 
 <!-- /TOC -->
@@ -37,7 +33,7 @@ Most recent research focuses on the aspect-based approaches. But not all opensou
 
 There are many different approaches to solve the problem. Lexical methods, for example, look at the frequency of words expressing positive and negative sentiment (from i.e. SentiWordNet) occurring in the given sentence. Supervised Machine Learning, such as Naive Bayes and Support Vector Machine (SVM), can be used with training data. Since training examples are difficult to obtain, Unsupervised Machine Learning, such as Latent Dirichlet Allocation (LDA) and word embeddings (Word2Vec) are also used on large unlabeled datasets. Recent works also apply Deep Learning methods such as Convolutional Neural Network (CNN) and Long Short-term Memory (LSTM), as well as their attention-based variants. You will find more details in the survey papers.
 
-## Survey Papers 
+## References 
 
 Liu, Bing. "Sentiment analysis and opinion mining." Synthesis lectures on human language technologies 5.1 (2012): 1-167. [[pdf]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.244.9480&rep=rep1&type=pdf)
 
