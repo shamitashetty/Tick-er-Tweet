@@ -41,3 +41,37 @@ Vinodhini, G., and R. M. Chandrasekaran. "Sentiment analysis and opinion mining:
 
 Medhat, Walaa, Ahmed Hassan, and Hoda Korashy. "Sentiment analysis algorithms and applications: A survey." Ain Shams Engineering Journal 5.4 (2014): 1093-1113. [[pdf]](http://www.sciencedirect.com/science/article/pii/S2090447914000550)
 
+<strong>Output</strong>
+```python
+Emoticons: {'positive': 0.33, 'negative': 0.66}
+DictionaryTest: {'positive': 0.46153846153846156, 'negative': 0.5384615384615384}
+Hashtags:  {'positive': 0.38, 'negative': 0.62}
+```
+Progress
+--------
+* <span style="color:green;">Emoticons: This class uses emoticons detection to classify the passed string as positive or negative</span>
+* <span style="color:green;">DictionaryTest: This class uses a set of English words and their subjectivity to give a score to a string</span>
+* <span style="color:green;">hashtags: This class extracts hashtags from the string sent and calculates the sentiment based on a trained dataset</span>
+* AllCaps
+* ElongatedWords
+* Negation
+* Punctuation
+
+Social Network APIs
+---------------
+* Twitter Search API
+* Facebook Graph API
+
+Computation Engines
+-------------------
+Wolfram Alpha
+
+Team Members
+------------
+<table border="0">
+<tr><th>Name</th><th>Email</th></tr>
+<tr><td>Sudhanshu Mishra</td><td> mrsud94@gmail.com</td></tr>
+<tr><td>Ambar Mehrotra</td><td>ambar.prince@gmail.com</td></tr>
+</table>
+
+
