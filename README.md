@@ -70,8 +70,8 @@ Team Members
 ------------
 <table border="0">
 <tr><th>Name</th><th>Email</th></tr>
-<tr><td>Sudhanshu Mishra</td><td> mrsud94@gmail.com</td></tr>
-<tr><td>Ambar Mehrotra</td><td>ambar.prince@gmail.com</td></tr>
+<tr><td>Shamitha Shetty</td><td> atimahs16@gmail.com</td></tr>
+<tr><td>Anup Mathur</td><td>anupmath@gmail.com</td></tr>
 </table>
 
 
