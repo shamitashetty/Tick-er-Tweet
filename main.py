@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 
 import datetime
-import matplotlib
 import matplotlib.pyplot as plt
 import os
 import pandas as pd
-# For reading stock data from yahoo
-import pandas_datareader as pdr
 import quandl
-import xlsxwriter
-import pandas_datareader
 import sys
+from get_metadata import GetMetaData
+from scrape import ScrapeWeb
 
 class TweetAnalysis(object):
 
@@ -28,11 +25,12 @@ class TweetAnalysis(object):
     self.quandl_api_key = kwargs["api_key"]
     quandl.ApiConfig.api_key = self.quandl_api_key
     # The tech stocks and stock market indices we'll use for this analysis
-    self.ticker_list = ['AAPL', 'AMZN', 'FB', 'GOOG', 'MSFT']
-    self.stock_index_list = ['BCB/UDJIAD1', 'BCIW/_SPXT', 'NASDAQOMX/COMP']
+    self.ticker_list = ['AAPL', 'AMZN', 'FB', 'GOOG', 'MSFT', 'TM', 'JWN']
+    #@todo add toyota and nordstorm
+    self.stock_index_list = ['BCB/7809', 'BCIW/_INX', 'NASDAQOMX/COMP']
     #Start and end dates for stock data extraction
-    self.start_date = datetime.date(2017, 1, 1)
-    self.end_date = datetime.date.today()
+    self.start_date = kwargs["start_date"]
+    self.end_date = kwargs["end_date"]
     self.writer_stock = None
     self.writer_index = None
 
@@ -46,7 +44,8 @@ class TweetAnalysis(object):
       # filter the table for selected tickers, columns within a time range
       # set paginate to True because Quandl limits tables API to 10,000 rows per call
       stock_df = quandl.get_table('WIKI/PRICES', ticker=self.ticker_list,
-                                  qopts={'columns': ['ticker', 'date', 'adj_open', 'adj_close']},
+                                  qopts={'columns': ['ticker', 'date', 'open', 'close', 'low', 'high', 'adj_open',
+                                                     'adj_close']},
                                   date={'gte': self.start_date, 'lte': self.end_date},
                                   paginate=True)
       # create a new dataframe with 'date' column as index
@@ -125,6 +124,13 @@ class TweetAnalysis(object):
     pass
 
 if __name__ == "__main__":
-  tweet_analysis = TweetAnalysis(stock_data_filename=sys.argv[1], index_data_filename=sys.argv[2], api_key=sys.argv[3])
+  start_date = datetime.date(2018, 4, 1)
+  end_date = datetime.date.today()
+  tweet_analysis = TweetAnalysis(stock_data_filename=sys.argv[1], index_data_filename=sys.argv[2], api_key=sys.argv[3],
+                                 start_date=start_date, end_date=end_date)
   tweet_analysis.get_stock_data()
-  # tweet_analysis.get_tweet_data()
+  scrape_web = ScrapeWeb(user="realdonaldtrump", start_date=start_date, end_date=end_date)
+  scrape_web.get_tweets()
+  #Get tweet data for the user "realdonaldtrump"
+  meta_data = GetMetaData(user="realdonaldtrump")
+  meta_data.get_metadata()
