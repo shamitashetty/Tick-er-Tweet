@@ -45,7 +45,7 @@ class TweetAnalysis(object):
       # set paginate to True because Quandl limits tables API to 10,000 rows per call
       stock_df = quandl.get_table('WIKI/PRICES', ticker=self.ticker_list,
                                   qopts={'columns': ['ticker', 'date', 'open', 'close', 'low', 'high', 'adj_open',
-                                                     'adj_close']},
+                                                     'adj_close', 'volume', 'adj_volume']},
                                   date={'gte': self.start_date, 'lte': self.end_date},
                                   paginate=True)
       # create a new dataframe with 'date' column as index
@@ -110,7 +110,6 @@ class TweetAnalysis(object):
     start_adj_open_index = 1
     num_of_tickers = round((len(data_frame.columns) - 1) / 2)
     last_adj_open_index = start_adj_open_index + num_of_tickers
-    first_adj_close_index = last_adj_open_index + 1
     data_frame.plot(x="ticker", y=list(data_frame.columns.values[start_adj_open_index:last_adj_open_index]), grid=True)
     plt.show()
 
@@ -124,7 +123,7 @@ class TweetAnalysis(object):
     pass
 
 if __name__ == "__main__":
-  start_date = datetime.date(2018, 4, 1)
+  start_date = datetime.date(2017, 1, 1)
   end_date = datetime.date.today()
   tweet_analysis = TweetAnalysis(stock_data_filename=sys.argv[1], index_data_filename=sys.argv[2], api_key=sys.argv[3],
                                  start_date=start_date, end_date=end_date)
