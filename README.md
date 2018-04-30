@@ -60,25 +60,25 @@ The code is divided into six separate classes for easy understanding, editing an
     2. Selenium- `pip3 install selenium`
     3. [Twitter Apps Account] (https://themepacific.com/how-to-generate-api-key-consumer-token-access-key-for-twitter-oauth/994/)
     
-   ##Get_stock_data
-    Yahoo! finance has decommissioned their historical data API and as a result the most popular Python packages for retrieving data have stopped functioning properly. This script uses the Quandl API for retrieving stock data and retruns a .csv file based on the list of Stock ticker names provided to the query.
+   ## Get_stock_data
+   Yahoo! finance has decommissioned their historical data API and as a result the most popular Python packages for retrieving data have stopped functioning properly. This script uses the Quandl API for retrieving stock data and retruns a .csv file based on the list of Stock ticker names provided to the query.
     Requirements: 
     [Quandl API] (https://blog.quandl.com/getting-started-with-the-quandl-api) - `pip3 install quandl`
     
-   ##Data_preprocessing
-    Performs the basic 'cleaning' of the .csv and .xlsx files for tweet data and stock data respectively. This script also filters the tweet data to get a dataframe object of tweets mentioning the stocks/ keywords of interest.
+   ## Data_preprocessing
+   Performs the basic 'cleaning' of the .csv and .xlsx files for tweet data and stock data respectively. This script also filters the tweet data to get a dataframe object of tweets mentioning the stocks/ keywords of interest.
     
-   ##Sentiment_Analysis
-    This script takes the preprocessed csv tweet file returns the results of sentiment analysis of all tweets as positive(+1), negative (-1) or neutral(0). It also gives some general information about the trends from the tweet file such as max likes and max retweets.
+   ## Sentiment_Analysis
+   This script takes the preprocessed csv tweet file returns the results of sentiment analysis of all tweets as positive(+1), negative (-1) or neutral(0). It also gives some general information about the trends from the tweet file such as max likes and max retweets.
     Requirements:
     [Textblob] (https://textblob.readthedocs.io/en/dev/) - `pip3 install textblob`
     
-   ##Plotting_data
-    The stock data is plotted using the [Plotly] package in Python3. [plotly.py](https://plot.ly/d3-js-for-python-and-pandas-charts/) is an interactive, browser-based graphing library for Python :sparkles:. You need to create a free account for accessing the online plots but you can also plot data offline using the offline feature in the package.
+   ## Plotting_data
+   The stock data is plotted using the [Plotly] package in Python3. [plotly.py](https://plot.ly/d3-js-for-python-and-pandas-charts/) is an interactive, browser-based graphing library for Python :sparkles:. You need to create a free account for accessing the online plots but you can also plot data offline using the offline feature in the package.
     Requirements: 
     Plotly- `pip3 install plotly`
     
-   ##Main()
+   ## Main()
    Main() function calls the above classes in the specified order and returns the results.
     
 
@@ -112,12 +112,9 @@ Social Network APIs
 * Yahoo Fnance API
 * Google Finance API
 
-Team Members
+Acknowledgments
 ------------
-<table border="0">
-<tr><th>Name</th><th>Email</th></tr>
-<tr><td>Shamitha Shetty</td><td> atimahs16@gmail.com</td></tr>
-<tr><td>Anup Mathur</td><td>anupmath@gmail.com</td></tr>
-</table>
+* Martin Skarzynski
+* Anup Mathur
 
 
