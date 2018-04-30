@@ -15,6 +15,7 @@
     - [Main() function](#Main())
 - [Inference and Path forward](#Inference)
 - [References](#References)
+- [Further reading](#Further_reading)
 - [Acknowledgment](#Acknowledgment)    
 
 <!-- /TOC -->
@@ -31,7 +32,7 @@ The goal of this repository is to provide adequate links for scholars who want t
 The code is divided into six separate classes for easy understanding, editing and calling in the main() function:
 
 <table border="0">
-<tr><th>Name</th><th>Relevant files</th></tr>Contains</th></tr>
+<tr><th>Name</th><th>Relevant files</th><th>Contains</th></tr>
 <tr><td>Twitter Scraping</td><td> atimahs16@gmail.com</td></tr>
 <tr><td>Getting stock data </td><td>anupmath@gmail.com</td></tr>
 <tr><td>Preprocessing of tweet and stock data  </td><td>anupmath@gmail.com</td></tr>
@@ -51,6 +52,12 @@ The code is divided into six separate classes for easy understanding, editing an
 
 
 ## Description 
+   **Basic Python3 packages required across all scripts**
+    1. NumPy
+    2. Pandas
+    3. Matplotlib
+    4. Seaborn
+
    ## Twitter_Scraping
    Twitter makes it hard to get all of a user's tweets (assuming they have more than 3200). This is a way to get around that using Python, Selenium, and Tweepy. 
     Essentially, we will use Selenium to open up a browser and automatically visit Twitter's search page, searching for a single user's tweets on a single day. If we want all tweets from 2015, we will check all 365 days / pages. This would be a nightmare to do manually, so the scrape.py script does it all for you - all you have to do is input a date range and a twitter user handle, and wait for it to finish.
@@ -81,40 +88,27 @@ The code is divided into six separate classes for easy understanding, editing an
    ## Main()
    Main() function calls the above classes in the specified order and returns the results.
     
+## Inference and Path forward
+   Weak to no correlation between Trump’s tweet sentiment score and the stock index, as multiple factors can affect the stock market including:  
+   . Governmental press
+   . Specific news about a company’s earnings
+   . Change of to a switch in investor sentiment in general
+   Only a short term effect was observed on the stock market values of most companies and they seemed to recover from this slump in the long run.
+   
+   The sentiment analysis tool has limitations in accurately gauging the sentiment of sarcasm or tweets that don't fall in the category of positive/ negative/ neutral keywords.
+   
+   More features can be added to the script for giving information
 
 ## References 
 
-Liu, Bing. "Sentiment analysis and opinion mining." Synthesis lectures on human language technologies 5.1 (2012): 1-167. [[pdf]](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.244.9480&rep=rep1&type=pdf)
-
-Vinodhini, G., and R. M. Chandrasekaran. "Sentiment analysis and opinion mining: a survey." International Journal 2.6 (2012): 282-292. [[pdf]](http://www.dmi.unict.it/~faro/tesi/sentiment_analysis/SA2.pdf)
-
-Medhat, Walaa, Ahmed Hassan, and Hoda Korashy. "Sentiment analysis algorithms and applications: A survey." Ain Shams Engineering Journal 5.4 (2014): 1093-1113. [[pdf]](http://www.sciencedirect.com/science/article/pii/S2090447914000550)
-
-<strong>Output</strong>
-```python
-Emoticons: {'positive': 0.33, 'negative': 0.66}
-DictionaryTest: {'positive': 0.46153846153846156, 'negative': 0.5384615384615384}
-Hashtags:  {'positive': 0.38, 'negative': 0.62}
-```
-Progress
---------
-* <span style="color:green;">Emoticons: This class uses emoticons detection to classify the passed string as positive or negative</span>
-* <span style="color:green;">DictionaryTest: This class uses a set of English words and their subjectivity to give a score to a string</span>
-* <span style="color:green;">hashtags: This class extracts hashtags from the string sent and calculates the sentiment based on a trained dataset</span>
-* AllCaps
-* ElongatedWords
-* Negation
-* Punctuation
-
-Social Network APIs
----------------
-* Twitter Search API
-* Yahoo Fnance API
-* Google Finance API
+* https://github.com/bpb27/twitter_scraping.git
+* https://github.com/RodolfoFerro/pandas_twitter
+* https://plot.ly/python/candlestick-charts/
 
 Acknowledgments
 ------------
 * Martin Skarzynski
 * Anup Mathur
 
+Please send any questions/comments to atimahs16 at gmail dot com.  📢
 
