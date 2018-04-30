@@ -12,7 +12,7 @@
     - [Preprocessing of tweet and stock data](#Data_preprocessing)
     - [Sentiment analysis of tweets](#Sentiment_Analysis)
     - [Candlestick plot of stock and filtered tweet data](#Plotting_data)
-    - [Main() function calls the above classes and gives the results](#Main())
+    - [Main() function](#Main())
 - [Inference and Path forward](#Inference)
 - [References](#References)
 - [Acknowledgment](#Acknowledgment)    
@@ -29,6 +29,17 @@ The goal of this repository is to provide adequate links for scholars who want t
 ## Introduction
 
 The code is divided into six separate classes for easy understanding, editing and calling in the main() function:
+
+<table border="0">
+<tr><th>Name</th><th>Relevant files</th></tr>Contains</th></tr>
+<tr><td>Twitter Scraping</td><td> atimahs16@gmail.com</td></tr>
+<tr><td>Getting stock data </td><td>anupmath@gmail.com</td></tr>
+<tr><td>Preprocessing of tweet and stock data  </td><td>anupmath@gmail.com</td></tr>
+<tr><td>Sentiment analysis of tweets </td><td>anupmath@gmail.com</td></tr>
+<tr><td>Candlestick plot of stock and filtered tweet data</td><td>anupmath@gmail.com</td></tr>
+<tr><td>Main() function</td><td>anupmath@gmail.com</td></tr>
+</table>
+
 |Name    | Relevant files | Contains|
 |:------------:|:---:|:---------:|
 | Twitter Scraping  | Main source   | Everything     |
@@ -40,8 +51,8 @@ The code is divided into six separate classes for easy understanding, editing an
 
 
 ## Description 
-    ## Twitter_Scraping
-    Twitter makes it hard to get all of a user's tweets (assuming they have more than 3200). This is a way to get around that using Python, Selenium, and Tweepy. 
+   ## Twitter_Scraping
+   Twitter makes it hard to get all of a user's tweets (assuming they have more than 3200). This is a way to get around that using Python, Selenium, and Tweepy. 
     Essentially, we will use Selenium to open up a browser and automatically visit Twitter's search page, searching for a single user's tweets on a single day. If we want all tweets from 2015, we will check all 365 days / pages. This would be a nightmare to do manually, so the scrape.py script does it all for you - all you have to do is input a date range and a twitter user handle, and wait for it to finish.
     The scrape.py script collects tweet ids. If you know a tweet's id number, you can get all the information available about that tweet using Tweepy - text, timestamp, number of retweets / replies / favorites, geolocation, etc. Tweepy uses Twitter's API, so you will need to get API keys. Once you have them, you can run the get_metadata.py script.
     Requirements: 
@@ -49,23 +60,26 @@ The code is divided into six separate classes for easy understanding, editing an
     2. Selenium- `pip3 install selenium`
     3. [Twitter Apps Account] (https://themepacific.com/how-to-generate-api-key-consumer-token-access-key-for-twitter-oauth/994/)
     
-    ##Get_stock_data
+   ##Get_stock_data
     Yahoo! finance has decommissioned their historical data API and as a result the most popular Python packages for retrieving data have stopped functioning properly. This script uses the Quandl API for retrieving stock data and retruns a .csv file based on the list of Stock ticker names provided to the query.
     Requirements: 
     [Quandl API] (https://blog.quandl.com/getting-started-with-the-quandl-api) - `pip3 install quandl`
     
-    ##Data_preprocessing
+   ##Data_preprocessing
     Performs the basic 'cleaning' of the .csv and .xlsx files for tweet data and stock data respectively. This script also filters the tweet data to get a dataframe object of tweets mentioning the stocks/ keywords of interest.
     
-    ##Sentiment_Analysis
+   ##Sentiment_Analysis
     This script takes the preprocessed csv tweet file returns the results of sentiment analysis of all tweets as positive(+1), negative (-1) or neutral(0). It also gives some general information about the trends from the tweet file such as max likes and max retweets.
     Requirements:
     [Textblob] (https://textblob.readthedocs.io/en/dev/) - `pip3 install textblob`
     
-    ##Plotting_data
+   ##Plotting_data
     The stock data is plotted using the [Plotly] package in Python3. [plotly.py](https://plot.ly/d3-js-for-python-and-pandas-charts/) is an interactive, browser-based graphing library for Python :sparkles:. You need to create a free account for accessing the online plots but you can also plot data offline using the offline feature in the package.
     Requirements: 
     Plotly- `pip3 install plotly`
+    
+   ##Main()
+   Main() function calls the above classes in the specified order and returns the results.
     
 
 ## References 
