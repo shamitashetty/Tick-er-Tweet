@@ -3,20 +3,20 @@
 
 <!-- TOC -->
 
-- [Contents](#Contents)
-- [Objective](#Objective)
-- [Introduction](#Introduction)
-- [Description](#Description)
+- [Contents](#contents)
+- [Objective](#objective)
+- [Introduction](#introduction)
+- [Description](#description)
     - [Twitter Scraping](#Twitter_Scraping)
     - [Getting stock data](#Get_stock_data)
     - [Preprocessing of tweet and stock data](#Data_preprocessing)
     - [Sentiment analysis of tweets](#Sentiment_Analysis)
     - [Candlestick plot of stock and filtered tweet data](#Plotting_data)
     - [Main() function](#Main())
-- [Inference and Path forward](#Inference)
-- [References](#References)
-- [Further reading](#Further_reading)
-- [Acknowledgment](#Acknowledgment)    
+- [Inference and Path forward](#inference)
+- [References](#references)
+- [Further reading](#further_reading)
+- [Acknowledgment](#acknowledgment)    
 
 <!-- /TOC -->
 
