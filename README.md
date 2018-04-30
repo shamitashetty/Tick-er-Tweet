@@ -33,12 +33,12 @@ The code is divided into six separate classes for easy understanding, editing an
 
 <table border="0">
 <tr><th>Name</th><th>Relevant files</th><th>Contains</th></tr>
-<tr><td>Twitter Scraping</td><td> atimahs16@gmail.com</td></tr>
-<tr><td>Getting stock data </td><td>anupmath@gmail.com</td></tr>
-<tr><td>Preprocessing of tweet and stock data  </td><td>anupmath@gmail.com</td></tr>
-<tr><td>Sentiment analysis of tweets </td><td>anupmath@gmail.com</td></tr>
-<tr><td>Candlestick plot of stock and filtered tweet data</td><td>anupmath@gmail.com</td></tr>
-<tr><td>Main() function</td><td>anupmath@gmail.com</td></tr>
+<tr><td>Twitter Scraping</td><td> atimahs16@gmail.com</td><td> atimahs16@gmail.com</td></tr>
+<tr><td>Getting stock data </td><td>anupmath@gmail.com</td><td> atimahs16@gmail.com</td></tr>
+<tr><td>Preprocessing of tweet and stock data  </td><td>anupmath@gmail.com</td><td> atimahs16@gmail.com</td></tr>
+<tr><td>Sentiment analysis of tweets </td><td>anupmath@gmail.com</td><td> atimahs16@gmail.com</td></tr>
+<tr><td>Candlestick plot of stock and filtered tweet data</td><td>anupmath@gmail.com</td><td> atimahs16@gmail.com</td></tr>
+<tr><td>Main() function</td><td>anupmath@gmail.com</td><td> atimahs16@gmail.com</td></tr>
 </table>
 
 |Name    | Relevant files | Contains|
@@ -67,12 +67,12 @@ The code is divided into six separate classes for easy understanding, editing an
     
    1. Tweepy- `pip3 install tweepy`
    2. Selenium- `pip3 install selenium`
-   3. [Twitter Apps Account] (https://themepacific.com/how-to-generate-api-key-consumer-token-access-key-for-twitter-oauth/994/)
+   3. [Twitter Apps Account](https://themepacific.com/how-to-generate-api-key-consumer-token-access-key-for-twitter-oauth/994/)
     
    ## Get_stock_data 📈
    Yahoo! finance has decommissioned their historical data API and as a result the most popular Python packages for retrieving data have stopped functioning properly. This script uses the Quandl API for retrieving stock data and retruns a .csv file based on the list of Stock ticker names provided to the query. 
    Requirements: 
-    [Quandl API] (https://blog.quandl.com/getting-started-with-the-quandl-api) - `pip3 install quandl`
+   [Quandl API](https://blog.quandl.com/getting-started-with-the-quandl-api) - `pip3 install quandl`
     
    ## Data_preprocessing
    Performs the basic 'cleaning' of the .csv and .xlsx files for tweet data and stock data respectively. This script also filters the tweet data to get a dataframe object of tweets mentioning the stocks/ keywords of interest.
@@ -80,7 +80,7 @@ The code is divided into six separate classes for easy understanding, editing an
    ## Sentiment_Analysis
    This script takes the preprocessed csv tweet file returns the results of sentiment analysis of all tweets as positive(+1), negative (-1) or neutral(0). It also gives some general information about the trends from the tweet file such as max likes and max retweets.
    Requirements:
-    [Textblob] (https://textblob.readthedocs.io/en/dev/) - `pip3 install textblob`
+   [Textblob](https://textblob.readthedocs.io/en/dev/) - `pip3 install textblob`
     
    ## Plotting_data
    The stock data is plotted using the [Plotly] package in Python3. [plotly.py](https://plot.ly/d3-js-for-python-and-pandas-charts/) is an interactive, browser-based graphing library for Python :sparkles:. You need to create a free account for accessing the online plots but you can also plot data offline using the offline feature in the package.
@@ -99,7 +99,7 @@ The code is divided into six separate classes for easy understanding, editing an
    
    The sentiment analysis tool has limitations in accurately gauging the sentiment of sarcasm or tweets that don't fall in the category of positive/ negative/ neutral keywords.
    
-   More features can be added to the script for giving information
+   New features can be added to the script for giving information about the nature of tweets and stock data. Additional data can be gathered from other sources to make the analysis more reliable.
 
 ## References 
 
