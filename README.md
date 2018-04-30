@@ -6,7 +6,7 @@
 - [Contents](#Contents)
 - [Objective](#Objective)
 - [Introduction](#Introduction)
-- [Description] (#Description)
+- [Description](#Description)
     - [Twitter Scraping](#Twitter_Scraping)
     - [Getting stock data](#Get_stock_data)
     - [Preprocessing of tweet and stock data](#Data_preprocessing)
