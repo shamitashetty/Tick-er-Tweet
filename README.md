@@ -86,9 +86,11 @@ The code is divided into six separate classes for easy understanding, editing an
     
 ## Inference and Path forward
    Weak to no correlation between Trump’s tweet sentiment score and the stock index, as multiple factors can affect the stock market including:  
-   . New policies not mentioned in tweets
-   . Specific news about a company’s earnings
-   . Change of to a switch in investor sentiment in general
+   
+   - New policies not mentioned in tweets
+   - Specific news about a company’s earnings
+   - Change of to a switch in investor sentiment in general
+   
    Only a short term effect was observed on the stock market values of most companies and they seemed to recover from this slump in the long run.
    
    The sentiment analysis tool has limitations in accurately gauging the sentiment of sarcasm or tweets that don't fall in the category of positive/ negative/ neutral keywords.
