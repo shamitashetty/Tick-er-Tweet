@@ -63,16 +63,15 @@ The code is divided into six separate classes for easy understanding, editing an
    Twitter makes it hard to get all of a user's tweets (assuming they have more than 3200). This is a way to get around that using Python, Selenium, and Tweepy. 
     Essentially, we will use Selenium to open up a browser and automatically visit Twitter's search page, searching for a single user's tweets on a single day. If we want all tweets from 2015, we will check all 365 days / pages. This would be a nightmare to do manually, so the scrape.py script does it all for you - all you have to do is input a date range and a twitter user handle, and wait for it to finish.
     The scrape.py script collects tweet ids. If you know a tweet's id number, you can get all the information available about that tweet using Tweepy - text, timestamp, number of retweets / replies / favorites, geolocation, etc. Tweepy uses Twitter's API, so you will need to get API keys. Once you have them, you can run the get_metadata.py script.
-    Requirements: 
+   Requirements: 
     
-    1. Tweepy- `pip3 install tweepy`
-    2. Selenium- `pip3 install selenium`
-    3. [Twitter Apps Account] (https://themepacific.com/how-to-generate-api-key-consumer-token-access-key-for-twitter-oauth/994/)
+   1. Tweepy- `pip3 install tweepy`
+   2. Selenium- `pip3 install selenium`
+   3. [Twitter Apps Account] (https://themepacific.com/how-to-generate-api-key-consumer-token-access-key-for-twitter-oauth/994/)
     
-   ## Get_stock_data
-   Yahoo! finance has decommissioned their historical data API and as a result the most popular Python packages for retrieving data have stopped functioning properly. This script uses the Quandl API for retrieving stock data and retruns a .csv file based on the list of Stock ticker names provided to the query.
-    Requirements: 
-    
+   ## Get_stock_data 📈
+   Yahoo! finance has decommissioned their historical data API and as a result the most popular Python packages for retrieving data have stopped functioning properly. This script uses the Quandl API for retrieving stock data and retruns a .csv file based on the list of Stock ticker names provided to the query. 
+   Requirements: 
     [Quandl API] (https://blog.quandl.com/getting-started-with-the-quandl-api) - `pip3 install quandl`
     
    ## Data_preprocessing
@@ -80,14 +79,12 @@ The code is divided into six separate classes for easy understanding, editing an
     
    ## Sentiment_Analysis
    This script takes the preprocessed csv tweet file returns the results of sentiment analysis of all tweets as positive(+1), negative (-1) or neutral(0). It also gives some general information about the trends from the tweet file such as max likes and max retweets.
-    Requirements:
-    
+   Requirements:
     [Textblob] (https://textblob.readthedocs.io/en/dev/) - `pip3 install textblob`
     
    ## Plotting_data
    The stock data is plotted using the [Plotly] package in Python3. [plotly.py](https://plot.ly/d3-js-for-python-and-pandas-charts/) is an interactive, browser-based graphing library for Python :sparkles:. You need to create a free account for accessing the online plots but you can also plot data offline using the offline feature in the package.
-    Requirements: 
-    
+   Requirements: 
     Plotly- `pip3 install plotly`
     
    ## Main()
@@ -95,7 +92,7 @@ The code is divided into six separate classes for easy understanding, editing an
     
 ## Inference and Path forward
    Weak to no correlation between Trump’s tweet sentiment score and the stock index, as multiple factors can affect the stock market including:  
-   . Governmental press
+   . New policies not mentioned in tweets
    . Specific news about a company’s earnings
    . Change of to a switch in investor sentiment in general
    Only a short term effect was observed on the stock market values of most companies and they seemed to recover from this slump in the long run.
