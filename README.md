@@ -76,7 +76,7 @@ The code is divided into six separate classes for easy understanding, editing an
    [Textblob](https://textblob.readthedocs.io/en/dev/) - `pip3 install textblob`
     
    ## Plotting_data
-   The stock data is plotted using the [Plotly] package in Python3. [plotly.py](https://plot.ly/d3-js-for-python-and-pandas-charts/) is an interactive, browser-based graphing library for Python :sparkles:. You need to create a free account for accessing the online plots but you can also plot data offline using the offline feature in the package.
+   The stock data is plotted using the Plotly package in Python3. [plotly.py](https://plot.ly/d3-js-for-python-and-pandas-charts/) is an interactive, browser-based graphing library for Python :sparkles:. You need to create a free account for accessing the online plots but you can also plot data offline using the offline feature in the package.
    
    Requirements: 
     Plotly- `pip3 install plotly`
