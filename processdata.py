@@ -1,5 +1,7 @@
+import json
+import os
 import pandas as pd
-import itertools
+import warnings
 
 class ProcessData(object):
 
@@ -31,15 +33,32 @@ class ProcessData(object):
     # df.plot(title='stock data', kind='area')
     # plt.show()
     return df
-
+  
+  def get_filter_str(self, ticker):
+    filter_strings_file_path = '{}/tweetdata/filter_strings.json'.format(os.getcwd())
+    with open('{}'.format(filter_strings_file_path), 'r') as filter_strings_f:
+      filter_strings = filter_strings_f.read()
+      filter_dict = json.loads(filter_strings)
+      try:
+        filter_str = filter_dict[ticker]
+      except KeyError:
+        filter_str = ticker.lower()
+        warnings.warn('Filter string for {} stock not found in {}. Using ticker symbol ({}) as filter string.'.format(
+          ticker, filter_strings_file_path, filter_str))
+    return filter_str
+          
+  def filter_tweet(self, processed_df, ticker):
+    stock_filter_str = self.get_filter_str(ticker)
+    processed_df['tweetL'] = processed_df['text'].str.lower()
+    filtered_df = processed_df[processed_df['tweetL'].str.contains('{}'.format(stock_filter_str))]
+    return filtered_df  
+  
   def process_data_tweet(self, csv_file_path):
     with open(csv_file_path) as csvfile:
-      read_csv = pd.read_csv(csvfile, delimiter=',')
-      read_csv['tweetL'] = read_csv['text'].str.lower()
-      tweetdata_df = read_csv[read_csv['tweetL'].str.contains('amazon|amzn|@amazon|#amazon')]
+      processed_df = pd.read_csv(csvfile, delimiter=',')
       # Convert created_at to datatime format and set it as index
-      tweetdata_df['created_at'] = pd.to_datetime(tweetdata_df['created_at'])
-      tweetdata_df.set_index('created_at', inplace=True)
-      tweetdata_df.index.name = ['Date']
-    return tweetdata_df
+      processed_df['created_at'] = pd.to_datetime(processed_df['created_at'])
+      processed_df.set_index('created_at', inplace=True)
+      processed_df.index.name = ['Date']
+    return processed_df
 
