@@ -1,5 +1,6 @@
 import plotly.offline as py_offline
 import plotly.graph_objs as go
+import pandas as pd
 
 
 class Plots(object):
@@ -12,7 +13,6 @@ class Plots(object):
     pass
 
   def candlestick_stock_plot(self, dataframe, stock_ticker):
-    import pdb;pdb.set_trace()
     mcd_candle = go.Candlestick(x=dataframe.index,
                                 open=dataframe["{}_open".format(stock_ticker)],
                                 high=dataframe["{}_high".format(stock_ticker)],
@@ -29,25 +29,37 @@ class Plots(object):
     :param stock_ticker:
     :return:
     """
+
     tweet_date_list = list(tweet_df.index.date)
     trace_tweet_y = stock_df.loc[stock_df.index.isin(tweet_date_list)]
-
+    # trace_stockchange= ((stock_df['AMZN_close']/stock_df['AMZN_close'].shift(1)) - 1)
+    trace_stockpct= pd.DataFrame([])
+    trace_stockpct['AMZN_pctchange']= (stock_df['AMZN_close'].pct_change())
+    # trace_stockpct= trace_stockpct.loc[trace_stockpct.index.isin(tweet_date_list)]
+    trace_tweet_y= pd.merge(trace_tweet_y, trace_stockpct, left_index=True, right_index=True)
+    pct_change_list = trace_tweet_y["{}_pctchange".format(stock_ticker)].tolist()
+    tweet_text_list = tweet_df.text.tolist()
+    tweet_pct_change_list = []
+    for pair in zip(pct_change_list, tweet_text_list):
+      res_str = "% change: {}. Tweet: {}".format(round(pair[0], 4), pair[1])
+      tweet_pct_change_list.append(res_str)
     trace_stock = go.Candlestick(x=stock_df.index,
                                  open=stock_df.AMZN_open,
                                  high=stock_df.AMZN_high,
                                  low=stock_df.AMZN_low,
                                  close=stock_df.AMZN_close)
-    trace_stock_tweet = go.Candlestick(x=tweet_df.index,
-                                       open=stock_df.AMZN_open,
-                                       high=stock_df.AMZN_high,
-                                       low=stock_df.AMZN_low,
-                                       close=stock_df.AMZN_close)
+    trace_stock_tweet = go.Candlestick(x=trace_tweet_y.index,
+                                       open=trace_tweet_y.AMZN_open,
+                                       high=trace_tweet_y.AMZN_high,
+                                       low=trace_tweet_y.AMZN_low,
+                                       close=trace_tweet_y.AMZN_close)
     trace_tweet = go.Scatter(
       x=trace_tweet_y.index,
       y=trace_tweet_y["{}_close".format(stock_ticker)],
       mode='markers',
       name='markers',
-      text=tweet_df.text,
+      marker={'color': 'blue', 'symbol': 104, 'size': "6"},
+      text=tweet_pct_change_list,
       textposition='bottom',
       textfont=dict(
         family='sans serif',
@@ -55,7 +67,7 @@ class Plots(object):
         color='#ff7f0e'
       )
     )
-    data = [trace_stock, trace_stock_tweet, trace_tweet]
+    data = [trace_stock, trace_tweet]
     layout = go.Layout(
       showlegend=False, title='{} stock trend ft. Trump Tweets'.format(stock_ticker),
       yaxis={'title': '{} Stock'.format(stock_ticker)})
