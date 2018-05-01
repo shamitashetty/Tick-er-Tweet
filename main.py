@@ -136,7 +136,9 @@ if __name__ == "__main__":
   process_data = ProcessData(ticker_list=ticker_list)
   processed_df_stock = process_data.process_data_stock('{}/stockdata/{}'.format(os.getcwd(), sys.argv[1]))
   processed_df_tweet = process_data.process_data_tweet('{}/tweetdata/{}.csv'.format(os.getcwd(), sys.argv[4]))
-  # Plot processed data
-  plot_data = Plots()
-  # plot_data.candlestick_stock_plot(processed_df_stock, 'AMZN')
-  plot_data.candlestick_stock_tweet_plot(processed_df_stock, processed_df_tweet, 'AMZN')
+  for ticker in ticker_list:
+    filtered_df = process_data.filter_tweet(processed_df_tweet, ticker)
+    # Plot processed data
+    plot_data = Plots()
+    # plot_data.candlestick_stock_plot(processed_df_stock, 'AMZN')
+    plot_data.candlestick_stock_tweet_plot(processed_df_stock, filtered_df, ticker)

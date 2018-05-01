@@ -60,7 +60,7 @@ class Plots(object):
       showlegend=False, title='{} stock trend ft. Trump Tweets'.format(stock_ticker),
       yaxis={'title': '{} Stock'.format(stock_ticker)})
     fig = go.Figure(data=data, layout=layout)
-    plot_url = py_offline.plot(fig, filename='{}_tweet.html'.format(stock_ticker))
+    plot_url = py_offline.plot(fig, filename='{}_tweet.html'.format(stock_ticker), auto_open=False)
 
 # trace = go.Candlestick(x=df.index,
 #                        open=df.AMZN_open,
