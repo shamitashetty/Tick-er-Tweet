@@ -118,7 +118,7 @@ if __name__ == "__main__":
   start_date = datetime.date(2017, 1, 1)
   end_date = datetime.date.today()
   # Get stock data
-  ticker_list = ['AAPL', 'AMZN', 'FB', 'GOOG', 'JWN', 'MSFT']
+  ticker_list = ['AAPL', 'AMZN', 'FB', 'GOOG', 'JWN', 'MSFT', 'PEP', 'X', 'GM', 'F', 'BA']
   # S&P500: 'BCIW/_INX'
   stock_index_list = ['BCB/7809', 'NASDAQOMX/COMP']
   get_stock_data = GetStockData(stock_data_filename=sys.argv[1], index_data_filename=sys.argv[2], api_key=sys.argv[3],
