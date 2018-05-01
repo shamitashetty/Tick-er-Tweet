@@ -41,13 +41,13 @@ The code is divided into five separate classes for easy understanding, editing a
 <tr><td>Twitter Scraping</td><td> scrape.py get_metadata.py</td><td> <a href="https://github.com/shamitashetty/Tick-er-Tweet/tree/master/tweetdata">tweetdata</a></td></tr>
 <tr><td>Preprocessing of tweet and stock data  </td><td>processdata.py</td><td> Text file </td></tr>
 <tr><td>Sentiment analysis of tweets </td><td>sentimentanalysis.py</td><td>  Report </td></tr>
-<tr><td>Candlestick plot of stock and filtered tweet data</td><td>plots.py</td><td> Text & Figures <a href="https://github.com/shamitashetty/Tick-er-Tweet/tree/master/sampleoutputs">sample outputs</a></td></tr>
+<tr><td>Candlestick plot of stock and filtered tweet data</td><td>plots.py</td><td> Text & Figures <a href="https://github.com/shamitashetty/Tick-er-Tweet/tree/master/sampleoutputs">sampleoutputs</a></td></tr>
 </table>
 
 
 ## Description 
 
-   **List of Python3 packages required across all scripts**
+   **List of Python 3.6 packages required across all scripts**
    
     pip3 install numpy
     pip3 install pandas
