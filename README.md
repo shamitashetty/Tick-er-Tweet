@@ -1,4 +1,4 @@
-# TrumpTweetTicker
+# Tick-er-Tweet
 *Sentiment analysis of tweets, analyzing stock trends and impact of tweets on the stock market*
 
 <!-- TOC -->
@@ -7,12 +7,14 @@
 - [Objective](#objective)
 - [Introduction](#introduction)
 - [Description](#description)
-    - [Twitter Scraping](#Twitter_Scraping)
-    - [Getting stock data](#Get_stock_data)
-    - [Preprocessing of tweet and stock data](#Data_preprocessing)
-    - [Sentiment analysis of tweets](#Sentiment_Analysis)
-    - [Candlestick plot of stock and filtered tweet data](#Plotting_data)
-    - [Main() function](#Main())
+
+    - [Twitter Scraping](#twitter_scraping)
+    - [Getting stock data](#get_stock_data)
+    - [Preprocessing of tweet and stock data](#data_preprocessing)
+    - [Sentiment analysis of tweets](#sentiment_analysis)
+    - [Candlestick plot of stock and filtered tweet data](#plotting_data)
+    - [Main() function](#main)
+    
 - [Inference and Path forward](#inference)
 - [References](#references)
 - [Further reading](#further_reading)
@@ -29,26 +31,36 @@ The goal of this repository is to provide adequate links for scholars who want t
 
 ## Introduction
 
-The code is divided into six separate classes for easy understanding, editing and calling in the main() function:
+The code is divided into five separate classes for easy understanding, editing and calling in the main() function:
+
+![Flowchart](https://github.com/shamitashetty/Tick-er-Tweet/blob/master/img/Flowchart-tick-er-tweet-analysis.svg "Flowchart")
 
 <table border="0">
-<tr><th>Name</th><th>Relevant files</th><th>Contains</th></tr>
-<tr><td>Twitter Scraping</td><td> atimahs16@gmail.com</td><td> atimahs16@gmail.com</td></tr>
-<tr><td>Getting stock data </td><td>anupmath@gmail.com</td><td> Python script</td></tr>
-<tr><td>Preprocessing of tweet and stock data  </td><td>anupmath@gmail.com</td><td> Text & Code </td></tr>
-<tr><td>Sentiment analysis of tweets </td><td>anupmath@gmail.com</td><td>  Report </td></tr>
-<tr><td>Candlestick plot of stock and filtered tweet data</td><td>anupmath@gmail.com</td><td> Text & Figures</td></tr>
-<tr><td>Main() function</td><td>anupmath@gmail.com</td><td> Main source</td></tr>
+<tr><th>Name</th><th>Relevant files</th><th>Output</th></tr>
+<tr><td>Getting stock data </td><td>main.py</td><td> <a href="https://github.com/shamitashetty/Tick-er-Tweet/tree/master/stockdata"> stockdata</a></td></tr>
+<tr><td>Twitter Scraping</td><td> scrape.py get_metadata.py</td><td> <a href="https://github.com/shamitashetty/Tick-er-Tweet/tree/master/tweetdata">tweetdata</a></td></tr>
+<tr><td>Preprocessing of tweet and stock data  </td><td>processdata.py</td><td> Text file </td></tr>
+<tr><td>Sentiment analysis of tweets </td><td>sentimentanalysis.py</td><td>  Report </td></tr>
+<tr><td>Candlestick plot of stock and filtered tweet data</td><td>plots.py</td><td> Text & Figures <a href="https://github.com/shamitashetty/Tick-er-Tweet/tree/master/sampleoutputs">sample outputs</a></td></tr>
 </table>
 
 
 ## Description 
-   **Basic Python3 packages required across all scripts**
+
+   **List of Python3 packages required across all scripts**
    
-    1. NumPy
-    2. Pandas
-    3. Matplotlib
-    4. Seaborn
+    pip3 install numpy
+    pip3 install pandas
+    pip3 install matplotlib
+    pip3 install seaborn
+    pip3 install tweepy
+    pip3 install selenium
+    pip3 install quandl
+    pip3 install json
+    pip3 install plotly
+    pip3 install textblob
+    
+    
 
    ## Twitter_Scraping
    Twitter makes it hard to get all of a user's tweets (assuming they have more than 3200). This is a way to get around that using Python, Selenium, and Tweepy. 
@@ -60,17 +72,17 @@ The code is divided into six separate classes for easy understanding, editing an
    2. Selenium- `pip3 install selenium`
    3. [Twitter Apps Account](https://themepacific.com/how-to-generate-api-key-consumer-token-access-key-for-twitter-oauth/994/)
     
-   ## Get_stock_data 📈
-   Yahoo! finance has decommissioned their historical data API and as a result the most popular Python packages for retrieving data have stopped functioning properly. This script uses the Quandl API for retrieving stock data and retruns a .csv file based on the list of Stock ticker names provided to the query. 
+   ## Get_stock_data   
+   Yahoo! finance has decommissioned their historical data API and as a result the most popular Python packages for retrieving data have stopped functioning properly. This script uses the Quandl API for retrieving stock data and retruns a .xlsx file based on the list of Stock ticker names provided to the query. 📈
    
    Requirements: 
    [Quandl API](https://blog.quandl.com/getting-started-with-the-quandl-api) - `pip3 install quandl`
     
    ## Data_preprocessing
-   Performs the basic 'cleaning' of the .csv and .xlsx files for tweet data and stock data respectively. This script also filters the tweet data to get a dataframe object of tweets mentioning the stocks/ keywords of interest.
+   Performs the basic 'cleaning' and filtering of the .csv and .xlsx files for tweet data and stock data respectively. This script also filters the tweet data to get a dataframe object of tweets mentioning the stocks/ keywords of interest.
     
    ## Sentiment_Analysis
-   This script takes the preprocessed csv tweet file returns the results of sentiment analysis of all tweets as positive(+1), negative (-1) or neutral(0). It also gives some general information about the trends from the tweet file such as max likes and max retweets.
+   This script takes the .csv tweet file returns the results of sentiment analysis of all tweets as positive(+1), negative (-1) or neutral(0). It also gives some general information about the trends from the tweet file such as max likes and max retweets.
    
    Requirements:
    [Textblob](https://textblob.readthedocs.io/en/dev/) - `pip3 install textblob`
@@ -84,7 +96,7 @@ The code is divided into six separate classes for easy understanding, editing an
    ## Main()
    Main() function calls the above classes in the specified order and returns the results.
     
-## Inference and Path forward
+## Inference
    Weak to no correlation between Trump’s tweet sentiment score and the stock index, as multiple factors can affect the stock market including:  
    
    - New policies not mentioned in tweets
@@ -93,9 +105,12 @@ The code is divided into six separate classes for easy understanding, editing an
    
    Only a short term effect was observed on the stock market values of most companies and they seemed to recover from this slump in the long run.
    
-   The sentiment analysis tool has limitations in accurately gauging the sentiment of sarcasm or tweets that don't fall in the category of positive/ negative/ neutral keywords.
    
-   New features can be added to the script for giving information about the nature of tweets and stock data. Additional data can be gathered from other sources to make the analysis more reliable.
+  **Challenges and Path forward**
+  
+The sentiment analysis tool has limitations in accurately gauging the sentiment of sarcasm or tweets that don't fall in the category of positive/ negative/ neutral keywords.
+   
+New features can be added to the script for giving information about the nature of tweets and stock data. Additional data can be gathered from other sources to make the analysis more reliable.
 
 ## References 
 
@@ -103,9 +118,9 @@ The code is divided into six separate classes for easy understanding, editing an
 * https://github.com/RodolfoFerro/pandas_twitter
 * https://plot.ly/python/candlestick-charts/
 
-Acknowledgments
+## Acknowledgment
 ------------
-* Martin Skarzynski
+* Martin Skarzynski, Michael & Ben
 * Anup Mathur
 
 Please send any questions/comments to atimahs16 at gmail dot com.  📢
