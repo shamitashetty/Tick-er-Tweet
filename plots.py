@@ -34,8 +34,8 @@ class Plots(object):
     trace_tweet_y = stock_df.loc[stock_df.index.isin(tweet_date_list)]
     # trace_stockchange= ((stock_df['AMZN_close']/stock_df['AMZN_close'].shift(1)) - 1)
     trace_stockpct= pd.DataFrame([])
-    trace_stockpct['AMZN_pctchange']= (stock_df['AMZN_close'].pct_change())
-    # trace_stockpct= trace_stockpct.loc[trace_stockpct.index.isin(tweet_date_list)]
+    trace_stockpct['{}_pctchange'.format(stock_ticker)]= (stock_df['{}_close'.format(stock_ticker)].pct_change() * 100)
+    trace_stockpct= trace_stockpct.loc[trace_stockpct.index.isin(trace_tweet_y.index)]
     trace_tweet_y= pd.merge(trace_tweet_y, trace_stockpct, left_index=True, right_index=True)
     pct_change_list = trace_tweet_y["{}_pctchange".format(stock_ticker)].tolist()
     tweet_text_list = tweet_df.text.tolist()
@@ -44,15 +44,15 @@ class Plots(object):
       res_str = "% change: {}. Tweet: {}".format(round(pair[0], 4), pair[1])
       tweet_pct_change_list.append(res_str)
     trace_stock = go.Candlestick(x=stock_df.index,
-                                 open=stock_df.AMZN_open,
-                                 high=stock_df.AMZN_high,
-                                 low=stock_df.AMZN_low,
-                                 close=stock_df.AMZN_close)
+                                 open=stock_df["{}_open".format(stock_ticker)],
+                                 high=stock_df["{}_high".format(stock_ticker)],
+                                 low=stock_df["{}_low".format(stock_ticker)],
+                                 close=stock_df["{}_close".format(stock_ticker)])
     trace_stock_tweet = go.Candlestick(x=trace_tweet_y.index,
-                                       open=trace_tweet_y.AMZN_open,
-                                       high=trace_tweet_y.AMZN_high,
-                                       low=trace_tweet_y.AMZN_low,
-                                       close=trace_tweet_y.AMZN_close)
+                                       open=trace_tweet_y["{}_open".format(stock_ticker)],
+                                       high=trace_tweet_y["{}_high".format(stock_ticker)],
+                                       low=trace_tweet_y["{}_low".format(stock_ticker)],
+                                       close=trace_tweet_y["{}_close".format(stock_ticker)])
     trace_tweet = go.Scatter(
       x=trace_tweet_y.index,
       y=trace_tweet_y["{}_close".format(stock_ticker)],

@@ -22,7 +22,7 @@ class ScrapeWeb(object):
     self.end_date = kwargs["end_date"]
     # only edit these if you're having problems
     self.delay = 1
-    self.driver = webdriver.Firefox()  # options are Chrome() Firefox() Safari()
+    self.driver = webdriver.Safari()  # options are Chrome() Firefox() Safari()
     # don't mess with this stuff
     self.twitter_ids_filename = '{}/tweetdata/all_ids.json'.format(os.getcwd())
     self.days = (self.end_date - self.start_date).days + 1

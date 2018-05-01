@@ -142,3 +142,4 @@ if __name__ == "__main__":
     plot_data = Plots()
     # plot_data.candlestick_stock_plot(processed_df_stock, 'AMZN')
     plot_data.candlestick_stock_tweet_plot(processed_df_stock, filtered_df, ticker)
+  print("Tick-er-Tweet ran successfully!")

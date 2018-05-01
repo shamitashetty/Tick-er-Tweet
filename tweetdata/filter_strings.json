@@ -2,12 +2,12 @@
   "AAPL": "aapl|apple|@apple|#apple",
   "AMZN": "amazon|amzn|@amazon|#amazon",
   "BA": "ba|boeing|@boeing|#boeing",
-  "F": "f|ford|@ford|#ford",
-  "FB": "fb",
-  "GM": "gm",
-  "GOOG": "goog",
-  "JWN": "jwn",
-  "MSFT": "msft",
-  "PEP": "pep",
-  "X": "x|ussteel|trade|tarriff|tarriffs|steel|china"
+  "F": "ford|@ford|#ford",
+  "FB": "facebook|@facebook|#facebook",
+  "GM": "general motors|@general motors|#generalmotors",
+  "GOOG": "goog|google|@google|#google",
+  "JWN": "nordstrom|@nordstrom|#nordstrom",
+  "MSFT": "microsoft|@microsoft|#microsoft",
+  "PEP": "trade|tarriff|china",
+  "X": "x|ussteel|trade|tarriff|steel|china"
 }
