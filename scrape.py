@@ -3,7 +3,7 @@ from selenium.common.exceptions import NoSuchElementException, StaleElementRefer
 from time import sleep
 import json
 import datetime
-
+import os
 
 class ScrapeWeb(object):
 
@@ -24,7 +24,7 @@ class ScrapeWeb(object):
     self.delay = 1
     self.driver = webdriver.Firefox()  # options are Chrome() Firefox() Safari()
     # don't mess with this stuff
-    self.twitter_ids_filename = 'all_ids.json'
+    self.twitter_ids_filename = '{}/tweetdata/all_ids.json'.format(os.getcwd())
     self.days = (self.end_date - self.start_date).days + 1
     self.id_selector ='.time a.tweet-timestamp'
     self.tweet_selector = 'li.js-stream-item'

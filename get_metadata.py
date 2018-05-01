@@ -1,5 +1,6 @@
 import tweepy
 import json
+import os
 import csv
 import zipfile
 from time import sleep
@@ -18,6 +19,7 @@ class GetMetaData(object):
     self.all_data = []
     self.output_file = None
     self.output_file_short = None
+    self.tweetdata_path = '{}/tweetdata/'.format(os.getcwd())
 
   def collect_all_metadata(self):
     """
@@ -25,7 +27,7 @@ class GetMetaData(object):
     :return:
     """
     self.user = self.user.lower()
-    with open('all_ids.json') as f:
+    with open('{}/all_ids.json'.format(self.tweetdata_path)) as f:
       ids = json.load(f)
     print('total ids: {}'.format(len(ids)))
     limit = len(ids)
@@ -57,7 +59,7 @@ class GetMetaData(object):
       fields = ["favorite_count", "source", "text", "in_reply_to_screen_name", "is_retweet", "created_at",
                 "retweet_count", "id_str"]
       print('creating CSV version of minimized json master file')
-      f = csv.writer(open('{}.csv'.format(self.user), 'w'))
+      f = csv.writer(open('{}/{}.csv'.format(self.tweetdata_path, self.user), 'w'))
       f.writerow(fields)
       for x in data:
         f.writerow(
@@ -69,14 +71,14 @@ class GetMetaData(object):
     Create master json file
     :return:
     """
-    self.output_file = '{}.json'.format(self.user)
-    self.output_file_short = '{}_short.json'.format(self.user)
+    self.output_file = '{}/all_ids.json'.format(self.tweetdata_path)
+    self.output_file_short = '{}/{}_short.json'.format(self.tweetdata_path, self.user)
     compression = zipfile.ZIP_DEFLATED
     print('creating master json file')
     with open(self.output_file, 'w') as outfile:
       json.dump(self.all_data, outfile)
     print('creating ziped master json file')
-    zf = zipfile.ZipFile('{}.zip'.format(self.user), mode='w')
+    zf = zipfile.ZipFile('{}/{}.zip'.format(self.tweetdata_path, self.user), mode='w')
     zf.write(self.output_file, compress_type=compression)
     zf.close()
 
@@ -109,7 +111,7 @@ class GetMetaData(object):
     Get API keys from api_keys.json file
     :return:
     """
-    with open('api_keys.json') as f:
+    with open('{}/api_keys.json'.format(self.tweetdata_path)) as f:
       self.keys = json.load(f)
 
   def get_metadata(self):
