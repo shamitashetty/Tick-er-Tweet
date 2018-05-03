@@ -18,7 +18,7 @@
 - [Inference and Path forward](#inference)
 - [References](#references)
 - [Further reading](#further_reading)
-- [Acknowledgment](#acknowledgment)    
+- [Acknowledgments](#acknowledgments)    
 
 <!-- /TOC -->
 
@@ -113,7 +113,7 @@ The code is divided into five separate classes for easy understanding, editing a
   
 The sentiment analysis tool has limitations in accurately gauging the sentiment of sarcasm or tweets that don't fall in the category of positive/ negative/ neutral keywords.
    
-New features can be added to the script for giving information about the nature of tweets and stock data. Additional data can be gathered from other sources to make the analysis more reliable.
+New features can be added to the script for giving information about the nature of tweets and stock data and their correlation. Additional data can be gathered from other sources to make the analysis more reliable.
 
 ## References 
 
@@ -126,11 +126,9 @@ New features can be added to the script for giving information about the nature 
 #### [Here’s What Happened After Trump Targeted These 9 Companies on Twitter]( https://studentloanhero.com/featured/donald-trump-tweets-targeted-companies/)
 #### [The Bankrate Trump Index: How the president’s words affect stocks]( https://www.bankrate.com/investing/the-bankrate-trump-index-how-the-presidents-words-affect-stocks/)
 #### [Amazon stock extends fall after Trump tweets ‘concerns’ about U.S. Postal Service, taxes]( https://www.marketwatch.com/story/amazon-shares-keep-falling-after-trump-tweets-concerns-about-us-postal-service-taxes-2018-03-29)
-#### [Never Tweet, Mr. President]( https://fivethirtyeight.com/features/never-tweet-mr-president/)
-#### [The 425 People, Places and Things Donald Trump Has Insulted on Twitter: A Complete List]( https://www.nytimes.com/interactive/2016/01/28/upshot/donald-trump-twitter-insults.html?mcubz=3&amp;_r=0)
 
 
-## Acknowledgment
+## Acknowledgments
 ------------
 * #### Martin Skarzynski, Michael & Ben
 * #### Anup Mathur
