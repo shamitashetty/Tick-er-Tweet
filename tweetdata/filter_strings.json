@@ -2,7 +2,7 @@
   "AAPL": "aapl|apple|@apple|#apple",
   "AMZN": "amazon|amzn|@amazon|#amazon",
   "BA": "ba|boeing|@boeing|#boeing",
-  "F": "ford|@ford|#ford",
+  "F": "\\sford|@ford|#ford",
   "FB": "facebook|@facebook|#facebook",
   "GM": "general motors|@general motors|#generalmotors",
   "GOOG": "goog|google|@google|#google",

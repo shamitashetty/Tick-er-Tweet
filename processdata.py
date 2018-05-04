@@ -12,7 +12,6 @@ class ProcessData(object):
     """
     self.ticker_list = kwargs["ticker_list"]
 
-
   def process_data_stock(self, excel_file_path):
     # Get stock data from excel sheet and rename columns
     # excel file path --> 'stockdata/stockdata.xlsx'
