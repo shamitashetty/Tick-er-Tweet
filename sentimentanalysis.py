@@ -63,7 +63,7 @@ class SentimentAnalysis(object):
       # Plot likes and retweets over time
       plot_data = pd.Series(data=tweet_data['{}'.format(data_type)].values, index=tweet_data.index)
       plot_data.plot(figsize=(16, 4), label='{}'.format(data_type), legend=True)
-      plt.savefig('sentiment_analysis'.format())
+      plt.savefig('sampleoutput/sentiment_analysis'.format())
       # plt.show()
 
   #Sentiment analysis of tweets
