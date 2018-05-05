@@ -1,11 +1,11 @@
 #Get tweet data from csv
 
+import logging
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from textblob import TextBlob
 import re
-import warnings
 
 class SentimentAnalysis(object):
 
@@ -43,15 +43,16 @@ class SentimentAnalysis(object):
     :param data_type (String): Allowed valued: "favorite_count"/"retweet_count"
     :return None:
     """
+    logging.info("Plotting most liked and most retweeted tweet")
     if not data_types:
-      warnings.warn("data_types list is empty. Valid data_types are favorite_count and retweet_count. "
-                    "Plotting both favorite and retweet count")
+      logging.warning("data_types list is empty. Valid data_types are favorite_count and retweet_count. "
+                      "Plotting both favorite and retweet count")
       data_types = ["favorite_count", "retweet_count"]
     else:
       for data_type in data_types:
         if data_type not in ["favorite_count", "retweet_count"]:
-          warnings.warn("{} is not a valid data_type. Valid data_types are favorite_count and retweet_count. "
-                        "Plotting both favorite and retweet count".format(data_type))
+          logging.warning("{} is not a valid data_type. Valid data_types are favorite_count and retweet_count. "
+                          "Plotting both favorite and retweet count".format(data_type))
           data_types = ["favorite_count", "retweet_count"]
           break
     tweet_data = self.tweet_data
@@ -62,7 +63,8 @@ class SentimentAnalysis(object):
       # Plot likes and retweets over time
       plot_data = pd.Series(data=tweet_data['{}'.format(data_type)].values, index=tweet_data.index)
       plot_data.plot(figsize=(16, 4), label='{}'.format(data_type), legend=True)
-      plt.show()
+      plt.savefig('sentiment_analysis'.format())
+      # plt.show()
 
   #Sentiment analysis of tweets
   def clean_tweet(self, tweet):
@@ -80,6 +82,7 @@ class SentimentAnalysis(object):
     :param tweet:
     :return:
     """
+    logging.info("Analysing sentiment")
     analysis = TextBlob(self.clean_tweet(tweet))
     if analysis.sentiment.polarity > 0:
       return 1
@@ -95,6 +98,7 @@ class SentimentAnalysis(object):
     :return pct_neu_tweets (Float):
     :return pct_neg_tweets (Float):
     """
+    logging.info("Getting sentiment analysis results")
     # Create a column with the result of the analysis:
     self.tweet_data['SA'] = np.array([self.analyze_sentiment(tweet) for tweet in self.tweet_data['text']])
     # Construct lists with classified tweets

@@ -1,7 +1,7 @@
 import json
+import logging
 import os
 import pandas as pd
-import warnings
 
 class ProcessData(object):
 
@@ -34,7 +34,8 @@ class ProcessData(object):
     return df
   
   def get_filter_str(self, ticker):
-    filter_strings_file_path = '{}/tweetdata/filter_strings.json'.format(os.getcwd())
+    filter_strings_file_path = '{}/tweetdata/input/filter_strings.json'.format(os.getcwd())
+    logging.info("Reading filter strings from {}".format(filter_strings_file_path))
     with open('{}'.format(filter_strings_file_path), 'r') as filter_strings_f:
       filter_strings = filter_strings_f.read()
       filter_dict = json.loads(filter_strings)
@@ -42,13 +43,14 @@ class ProcessData(object):
         filter_str = filter_dict[ticker]
       except KeyError:
         filter_str = ticker.lower()
-        warnings.warn('Filter string for {} stock not found in {}. Using ticker symbol ({}) as filter string.'.format(
+        logging.warning('Filter string for {} stock not found in {}. Using ticker symbol ({}) as filter string.'.format(
           ticker, filter_strings_file_path, filter_str))
     return filter_str
           
   def filter_tweet(self, processed_df, ticker):
     stock_filter_str = self.get_filter_str(ticker)
     processed_df['tweetL'] = processed_df['text'].str.lower()
+    logging.info("Filtering Tweets")
     filtered_df = processed_df[processed_df['tweetL'].str.contains('{}'.format(stock_filter_str))]
     return filtered_df  
   

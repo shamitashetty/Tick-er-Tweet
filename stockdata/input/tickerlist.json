@@ -1,0 +1,4 @@
+{
+  "stock_ticker": ["AAPL", "AMZN", "FB", "GOOG", "JWN", "MSFT", "PEP", "X", "GM", "F", "BA"],
+  "stock_index_ticker": ["BCB/7809", "NASDAQOMX/COMP"]
+}
