@@ -89,14 +89,14 @@ class GetStockData(object):
       # get stock data from quandl and write it to an excel file
       self.get_stock_data_from_quandl(ticker_list)
     else:
-      self.logger.info("{} data file already exists. Not extracting any more data. Please delete this file if you"
+      self.logger.info("{} data file already exists. Not extracting any more data. Please delete this file if you "
                    "want to extract all the data again.".format(self.stock_data_path))
     if not index_data_exists:
       # get index data from quandl and write it to an excel file
       self.writer_index = pd.ExcelWriter(self.index_data_path, engine='xlsxwriter')
       self.get_stock_index_data_from_quandl(stock_index_list)
     else:
-      self.logger.info("{} data file already exists. Not extracting any more data. Please delete this file if you"
+      self.logger.info("{} data file already exists. Not extracting any more data. Please delete this file if you "
                    "want to extract all the data again.".format(self.index_data_path))
     # stock_data_frame = pd.read_excel(self.stock_data_path, sheet_name=self.stock_data_sheetname, skiprows=1)
     # index_data_frame = pd.read_excel(self.index_data_path, sheet_name=self.index_data_sheetname, skiprows=1)
