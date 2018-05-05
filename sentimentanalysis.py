@@ -16,6 +16,8 @@ class SentimentAnalysis(object):
     """
     self.tweet_data = pd.read_csv('{}'.format(kwargs["csv_file"]))
     del self.tweet_data['in_reply_to_screen_name']
+    self.logger = logging.getLogger(kwargs["logger_name"])
+
 
   def get_favourite_tweet(self):
     """
@@ -45,13 +47,13 @@ class SentimentAnalysis(object):
     """
     logging.info("Plotting most liked and most retweeted tweet")
     if not data_types:
-      logging.warning("data_types list is empty. Valid data_types are favorite_count and retweet_count. "
+      self.logger.warning("data_types list is empty. Valid data_types are favorite_count and retweet_count. "
                       "Plotting both favorite and retweet count")
       data_types = ["favorite_count", "retweet_count"]
     else:
       for data_type in data_types:
         if data_type not in ["favorite_count", "retweet_count"]:
-          logging.warning("{} is not a valid data_type. Valid data_types are favorite_count and retweet_count. "
+          self.logger.warning("{} is not a valid data_type. Valid data_types are favorite_count and retweet_count. "
                           "Plotting both favorite and retweet count".format(data_type))
           data_types = ["favorite_count", "retweet_count"]
           break
@@ -82,7 +84,7 @@ class SentimentAnalysis(object):
     :param tweet:
     :return:
     """
-    logging.info("Analysing sentiment")
+    self.logger.info("Analysing sentiment")
     analysis = TextBlob(self.clean_tweet(tweet))
     if analysis.sentiment.polarity > 0:
       return 1
@@ -98,7 +100,7 @@ class SentimentAnalysis(object):
     :return pct_neu_tweets (Float):
     :return pct_neg_tweets (Float):
     """
-    logging.info("Getting sentiment analysis results")
+    self.logger.info("Getting sentiment analysis results")
     # Create a column with the result of the analysis:
     self.tweet_data['SA'] = np.array([self.analyze_sentiment(tweet) for tweet in self.tweet_data['text']])
     # Construct lists with classified tweets

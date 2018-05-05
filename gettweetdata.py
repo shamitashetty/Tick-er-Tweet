@@ -34,6 +34,7 @@ class ScrapeWeb(object):
     self.id_selector ='.time a.tweet-timestamp'
     self.tweet_selector = 'li.js-stream-item'
     self.ids = []
+    self.logger = logging.getLogger(kwargs["logger_name"])
 
   def format_day(self, date):
       day = '0' + str(date.day) if len(str(date.day)) == 1 else str(date.day)
@@ -54,32 +55,32 @@ class ScrapeWeb(object):
     Scrape data from twitter for a given user fromo start_date till end_date
     :return:
     """
-    logging.info("Scraping data from Twitter.")
+    self.logger.info("Scraping data from Twitter.")
     for day in range(self.days):
       d1 = self.format_day(self.increment_day(self.start_date, 0))
       d2 = self.format_day(self.increment_day(self.start_date, 1))
       url = self.form_url(d1, d2)
-      logging.info("Url = {}".format(url))
+      self.logger.info("Url = {}".format(url))
       self.driver.get(url)
       sleep(self.delay)
       try:
         found_tweets = self.driver.find_elements_by_css_selector(self.tweet_selector)
         increment = 10
         while len(found_tweets) >= increment:
-          logging.info('Scrolling down to load more tweets')
+          self.logger.info('Scrolling down to load more tweets')
           self.driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
           sleep(self.delay)
           found_tweets = self.driver.find_elements_by_css_selector(self.tweet_selector)
           increment += 10
-        logging.info('{} tweets found, {} total'.format(len(found_tweets), len(self.ids)))
+        self.logger.info('{} tweets found, {} total'.format(len(found_tweets), len(self.ids)))
         for tweet in found_tweets:
           try:
             id = tweet.find_element_by_css_selector(self.id_selector).get_attribute('href').split('/')[-1]
             self.ids.append(id)
           except StaleElementReferenceException as e:
-            logging.error('Lost element reference', tweet)
+            self.logger.error('Lost element reference', tweet)
       except NoSuchElementException:
-        logging.info('No tweets on this day')
+        self.logger.info('No tweets on this day')
       self.start_date = self.increment_day(self.start_date, 1)
 
   def write_twitter_data_to_file(self):
@@ -87,23 +88,23 @@ class ScrapeWeb(object):
     Write the data extracted from twitter to a file
     :return:
     """
-    logging.info("Writing the extracted twitter data to a file")
+    self.logger.info("Writing the extracted twitter data to a file")
     try:
       with open(self.twitter_ids_filename) as f:
         all_ids = self.ids + json.load(f)
         data_to_write = list(set(all_ids))
-        logging.debug('tweets found on this scrape: ', len(self.ids))
-        logging.debug('total tweet count: ', len(data_to_write))
+        self.logger.debug('tweets found on this scrape: ', len(self.ids))
+        self.logger.debug('total tweet count: ', len(data_to_write))
     except FileNotFoundError:
       with open(self.twitter_ids_filename, 'w') as f:
         all_ids = self.ids
         data_to_write = list(set(all_ids))
-        logging.debug('tweets found on this scrape: ', len(self.ids))
-        logging.debug('total tweet count: ', len(data_to_write))
+        self.logger.debug('tweets found on this scrape: ', len(self.ids))
+        self.logger.debug('total tweet count: ', len(data_to_write))
 
     with open(self.twitter_ids_filename, 'w') as outfile:
         json.dump(data_to_write, outfile)
-    logging.info('All done here')
+    self.logger.info('All done here')
 
   def get_tweets(self):
     """
@@ -132,6 +133,7 @@ class GetMetaData(object):
     self.output_file_short = None
     self.tweetdata_input_path = '{}/tweetdata/input/'.format(os.getcwd())
     self.tweetdata_output_path = '{}/tweetdata/output/'.format(os.getcwd())
+    self.logger = logging.getLogger(kwargs["logger_name"])
 
   def collect_all_metadata(self):
     """
@@ -141,23 +143,23 @@ class GetMetaData(object):
     self.user = self.user.lower()
     with open('{}/all_ids.json'.format(self.tweetdata_output_path)) as f:
       ids = json.load(f)
-    logging.info('Total ids: {}'.format(len(ids)))
+    self.logger.info('Total ids: {}'.format(len(ids)))
     limit = len(ids)
     for id in range(0, limit, 100):
-      logging.debug('Currently getting {} - {}'.format(id, id + 100))
+      self.logger.debug('Currently getting {} - {}'.format(id, id + 100))
       sleep(6)  # needed to prevent hitting API rate limit
       id_batch = ids[id:id + 100]
       tweets = self.api.statuses_lookup(id_batch)
       for tw in tweets:
         self.all_data.append(dict(tw._json))
-    logging.info('Metadata collection complete')
+    self.logger.info('Metadata collection complete')
 
   def connect_to_twitter_API(self):
     """
     Connect to Twitter API
     :return:
     """
-    logging.info("Connecting to twitter API")
+    self.logger.info("Connecting to twitter API")
     auth = tweepy.OAuthHandler(self.keys['consumer_key'], self.keys['consumer_secret'])
     auth.set_access_token(self.keys['access_token'], self.keys['access_token_secret'])
     self.api = tweepy.API(auth)
@@ -171,7 +173,7 @@ class GetMetaData(object):
       data = json.load(master_file)
       fields = ["favorite_count", "source", "text", "in_reply_to_screen_name", "is_retweet", "created_at",
                 "retweet_count", "id_str"]
-      logging.info('Creating CSV version of minimized json master file')
+      self.logger.info('Creating CSV version of minimized json master file')
       f = csv.writer(open('{}/{}.csv'.format(self.tweetdata_output_path, self.user), 'w'))
       f.writerow(fields)
       for x in data:
@@ -187,10 +189,10 @@ class GetMetaData(object):
     self.output_file = '{}/all_ids.json'.format(self.tweetdata_output_path)
     self.output_file_short = '{}/{}_short.json'.format(self.tweetdata_output_path, self.user)
     compression = zipfile.ZIP_DEFLATED
-    logging.info('Creating master json file')
+    self.logger.info('Creating master json file')
     with open(self.output_file, 'w') as outfile:
       json.dump(self.all_data, outfile)
-    logging.info('Creating ziped master json file')
+    self.logger.info('Creating ziped master json file')
     zf = zipfile.ZipFile('{}/{}.zip'.format(self.tweetdata_output_path, self.user), mode='w')
     zf.write(self.output_file, compress_type=compression)
     zf.close()
@@ -215,7 +217,7 @@ class GetMetaData(object):
           "is_retweet": self.is_retweet(entry)
         }
         results.append(t)
-    logging.info('Creating minimized json master file')
+    self.logger.info('Creating minimized json master file')
     with open(self.output_file_short, 'w') as outfile:
       json.dump(results, outfile)
 

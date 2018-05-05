@@ -1,3 +1,4 @@
+import logging
 import plotly.offline as py_offline
 import plotly.graph_objs as go
 import pandas as pd
@@ -10,9 +11,11 @@ class Plots(object):
     Initialize Plots.
     :param kwargs:
     """
-    pass
+    self.logger = logging.getLogger(kwargs["logger_name"])
 
   def candlestick_stock_plot(self, dataframe, stock_ticker):
+
+    self.logger.info("Plotting stock data for {}".format(stock_ticker))
     mcd_candle = go.Candlestick(x=dataframe.index,
                                 open=dataframe["{}_open".format(stock_ticker)],
                                 high=dataframe["{}_high".format(stock_ticker)],
@@ -29,7 +32,7 @@ class Plots(object):
     :param stock_ticker:
     :return:
     """
-
+    self.logger.info("Plotting stock and tweet data for {}".format(stock_ticker))
     tweet_date_list = list(tweet_df.index.date)
     trace_tweet_y = stock_df.loc[stock_df.index.isin(tweet_date_list)]
     # trace_stockchange= ((stock_df['AMZN_close']/stock_df['AMZN_close'].shift(1)) - 1)

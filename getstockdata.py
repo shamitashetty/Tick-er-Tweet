@@ -23,6 +23,7 @@ class GetStockData(object):
     #Start and end dates for stock data extraction
     self.start_date = kwargs["start_date"]
     self.end_date = kwargs["end_date"]
+    self.logger = logging.getLogger(kwargs["logger_name"])
     self.writer_stock = None
     self.writer_index = None
 
@@ -31,7 +32,7 @@ class GetStockData(object):
     Get stock data from quandl and save it in an excel sheet.
     :return stock_df_sortedby_tickers (DataFrame:
     """
-    logging.info("Extracting stock data for {} from quandl".format(ticker_list))
+    self.logger.info("Extracting stock data for {} from quandl".format(ticker_list))
     try:
       # get the table for daily stock prices and,
       # filter the table for selected tickers, columns within a time range
@@ -46,7 +47,7 @@ class GetStockData(object):
       stock_df_sortedby_tickers = stock_df.pivot(index='date', columns='ticker')
       stock_df_sortedby_tickers.to_excel(self.writer_stock, sheet_name='{}'.format(self.stock_data_sheetname))
     except Exception as e:
-      logging.error("Exception while extracting stock data: {}".format(e))
+      self.logger.error("Exception while extracting stock data: {}".format(e))
       # Close the Pandas Excel writer and output the Excel file.
       self.writer_stock.save()
       raise Exception("Exception while extracting stock data: {}".format(e))
@@ -58,7 +59,7 @@ class GetStockData(object):
     Get stock index data from quandl and save it in an excel sheet.
     :return index_df_sortedby_tickers (DataFrame):
     """
-    logging.info("Extracting the stock index data for {} from quandl".format(stock_index_list))
+    self.logger.info("Extracting the stock index data for {} from quandl".format(stock_index_list))
     try:
       # get the table for daily stock prices and,
       # filter the table for selected tickers, columns within a time range
@@ -69,7 +70,7 @@ class GetStockData(object):
       # index_df_sortedby_tickers = index_df.pivot(index='date', columns='ticker')
       index_df.to_excel(self.writer_index, sheet_name='{}'.format(self.index_data_sheetname))
     except Exception as e:
-      logging.error("Exception while extracting stock index data: {}".format(e))
+      self.logger.error("Exception while extracting stock index data: {}".format(e))
       # Close the Pandas Excel writer and output the Excel file.
       self.writer_index.save()
       raise Exception("Exception while extracting stock index data: {}".format(e))
@@ -88,14 +89,14 @@ class GetStockData(object):
       # get stock data from quandl and write it to an excel file
       self.get_stock_data_from_quandl(ticker_list)
     else:
-      logging.info("{} data file already exists. Not extracting any more data. Please delete this file if you"
+      self.logger.info("{} data file already exists. Not extracting any more data. Please delete this file if you"
                    "want to extract all the data again.".format(self.stock_data_path))
     if not index_data_exists:
       # get index data from quandl and write it to an excel file
       self.writer_index = pd.ExcelWriter(self.index_data_path, engine='xlsxwriter')
       self.get_stock_index_data_from_quandl(stock_index_list)
     else:
-      logging.info("{} data file already exists. Not extracting any more data. Please delete this file if you"
+      self.logger.info("{} data file already exists. Not extracting any more data. Please delete this file if you"
                    "want to extract all the data again.".format(self.index_data_path))
     # stock_data_frame = pd.read_excel(self.stock_data_path, sheet_name=self.stock_data_sheetname, skiprows=1)
     # index_data_frame = pd.read_excel(self.index_data_path, sheet_name=self.index_data_sheetname, skiprows=1)
@@ -108,7 +109,7 @@ class GetStockData(object):
     :param data_frame:
     :return:
     """
-    logging.info("Plotting stock data")
+    self.logger.info("Plotting stock data")
     data_frame.drop(data_frame.index[0], inplace=True)
     start_adj_open_index = 1
     num_of_tickers = round((len(data_frame.columns) - 1) / 2)
