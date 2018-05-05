@@ -29,7 +29,7 @@ class ScrapeWeb(object):
     self.delay = 1
     self.driver = webdriver.Safari()  # options are Chrome() Firefox() Safari()
     # don't mess with this stuff
-    self.twitter_ids_filename = '{}/tweetdata/input/all_ids.json'.format(os.getcwd())
+    self.twitter_ids_filename = '{}/tweetdata/output/all_ids.json'.format(os.getcwd())
     self.days = (self.end_date - self.start_date).days + 1
     self.id_selector ='.time a.tweet-timestamp'
     self.tweet_selector = 'li.js-stream-item'
@@ -131,8 +131,8 @@ class GetMetaData(object):
     self.all_data = []
     self.output_file = None
     self.output_file_short = None
-    self.tweetdata_input_path = '{}/tweetdata/input/'.format(os.getcwd())
-    self.tweetdata_output_path = '{}/tweetdata/output/'.format(os.getcwd())
+    self.tweetdata_input_path = '{}/tweetdata/input'.format(os.getcwd())
+    self.tweetdata_output_path = '{}/tweetdata/output'.format(os.getcwd())
     self.logger = logging.getLogger(kwargs["logger_name"])
 
   def collect_all_metadata(self):
@@ -146,7 +146,7 @@ class GetMetaData(object):
     self.logger.info('Total ids: {}'.format(len(ids)))
     limit = len(ids)
     for id in range(0, limit, 100):
-      self.logger.debug('Currently getting {} - {}'.format(id, id + 100))
+      self.logger.info('Currently getting {} - {}'.format(id, id + 100))
       sleep(6)  # needed to prevent hitting API rate limit
       id_batch = ids[id:id + 100]
       tweets = self.api.statuses_lookup(id_batch)
@@ -169,11 +169,11 @@ class GetMetaData(object):
     Create a csv of json master file
     :return:
     """
+    self.logger.info("Creating csv of master json file")
     with open(self.output_file_short) as master_file:
       data = json.load(master_file)
       fields = ["favorite_count", "source", "text", "in_reply_to_screen_name", "is_retweet", "created_at",
                 "retweet_count", "id_str"]
-      self.logger.info('Creating CSV version of minimized json master file')
       f = csv.writer(open('{}/{}.csv'.format(self.tweetdata_output_path, self.user), 'w'))
       f.writerow(fields)
       for x in data:

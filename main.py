@@ -33,12 +33,13 @@ def get_logger(logger_name):
   return logger
 
 if __name__ == "__main__":
-  if len(sys.argv) < 5:
-    print("Received Invalid command line parameters \n. Usage: python3 main.py <stock_data_filename> <stock_index_data_"
-          "filename> <quandl_api_key> <tweet_data_csv_filename>")
-    sys.exit(1)
   logger_name = 'Tick-er-Tweet'
   logger = get_logger('{}'.format(logger_name))
+  if len(sys.argv) < 5:
+    logger.error("Received Invalid command line parameters \n. "
+                 "Usage: python3 main.py <stock_data_filename> <stock_index_data_filename> <quandl_api_key> "
+                 "<tweet_data_csv_filename>")
+    sys.exit(1)
   # Set start and end date for stock and tweet retrieval
   logger.info("Started Tick-er-Tweet")
   start_date = datetime.date(2017, 1, 1)
@@ -62,7 +63,7 @@ if __name__ == "__main__":
     scrape_web = ScrapeWeb(user="{}".format(tweet_user), start_date=start_date, end_date=end_date,
                            logger_name=logger_name)
     scrape_web.get_tweets()
-    # Get tweet data for the user "realdonaldtrump"
+    # Get tweet data for tweet_user
     meta_data = GetMetaData(user="{}".format(tweet_user), logger_name=logger_name)
     meta_data.get_metadata()
   logger.info("Processing the stock and tweet data")
@@ -82,4 +83,3 @@ if __name__ == "__main__":
     # plot_data.candlestick_stock_plot(processed_df_stock, 'AMZN')
     plot_data.candlestick_stock_tweet_plot(processed_df_stock, filtered_df, ticker)
   logger.info("Tick-er-Tweet ran successfully!")
-  print("Tick-er-Tweet ran successfully!")
