@@ -37,7 +37,7 @@ class Plots(object):
     trace_tweet_y = stock_df.loc[stock_df.index.isin(tweet_date_list)]
     # trace_stockchange= ((stock_df['AMZN_close']/stock_df['AMZN_close'].shift(1)) - 1)
     trace_stockpct= pd.DataFrame([])
-    trace_stockpct['{}_pctchange'.format(stock_ticker)]= (stock_df['{}_close'.format(stock_ticker)].pct_change() * 100)
+    trace_stockpct['{}_pctchange'.format(stock_ticker)] = (stock_df['{}_close'.format(stock_ticker)].pct_change() * 100)
     trace_stockpct= trace_stockpct.loc[trace_stockpct.index.isin(trace_tweet_y.index)]
     trace_tweet_y= pd.merge(trace_tweet_y, trace_stockpct, left_index=True, right_index=True)
     pct_change_list = trace_tweet_y["{}_pctchange".format(stock_ticker)].tolist()

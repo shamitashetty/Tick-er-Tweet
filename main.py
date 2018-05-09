@@ -50,8 +50,8 @@ if __name__ == "__main__":
   with open('{}'.format(ticker_list_file_path), 'r') as ticker_list_f:
     ticker_list_str = ticker_list_f.read()
     ticker_list_json_str = json.loads(ticker_list_str)
-  ticker_list = ticker_list_json_str["stock_ticker"]
-  stock_index_list = ticker_list_json_str["stock_index_ticker"]
+  ticker_list = sorted(ticker_list_json_str["stock_ticker"])
+  stock_index_list = sorted(ticker_list_json_str["stock_index_ticker"])
   logger.info("Extracting Stock Data")
   get_stock_data = GetStockData(stock_data_filename=sys.argv[1], index_data_filename=sys.argv[2], api_key=sys.argv[3],
                                 start_date=start_date, end_date=end_date, logger_name=logger_name)
