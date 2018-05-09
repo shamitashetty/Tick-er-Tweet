@@ -18,7 +18,7 @@
 - [Inference and Path forward](#inference)
 - [References](#references)
 - [Further reading](#further_reading)
-- [Acknowledgments](#acknowledgments)    
+- [Acknowledgment](#acknowledgment)    
 
 <!-- /TOC -->
 
@@ -128,7 +128,7 @@ New features can be added to the script for giving information about the nature 
 #### [Amazon stock extends fall after Trump tweets ‘concerns’ about U.S. Postal Service, taxes]( https://www.marketwatch.com/story/amazon-shares-keep-falling-after-trump-tweets-concerns-about-us-postal-service-taxes-2018-03-29)
 
 
-## Acknowledgments
+## Acknowledgment
 ------------
 * #### Martin Skarzynski, Michael & Ben
 * #### Anup Mathur
