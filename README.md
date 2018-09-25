@@ -23,10 +23,10 @@
 <!-- /TOC -->
 
 ## Contents
-This document describes my final project for BIOF309 Introduction to Python. The code and all supporting files are in my [Tick-er-Tweet GitHub repo](https://github.com/shamitashetty/Tick-er-Tweet)
+This document describes my final project for BIOF309 Introduction to Python. The code and all supporting files are in the [Tick-er-Tweet GitHub repo](https://github.com/shamitashetty/Tick-er-Tweet)
 
 ## Objective
-The idea for this project was conceived when I noticed that if Trump mentioned a company within his tweets, their shares would either go up in price if the tweet was positive or drop if the tweet was negative. I decided to make a python script to follow Trump and monitor the companies that he mentioned since the day he was inducted as the POTUS, to see how the tweet affected the price of the company's shares or the general stock market indices. 
+The idea for this project was conceived when we noticed that if Trump mentioned a company within his tweets, their shares would either go up in price if the tweet was positive or drop if the tweet was negative. We decided to make a python script to follow Trump and monitor the companies that he mentioned since the day he was inducted as the POTUS, to see how the tweet affected the price of the company's shares or the general stock market indices. 
 The goal of this project is to provide adequate links for scholars who want to research in this domain; and at the same time, be sufficiently accessible for developers who want to integrate sentiment analysis into their applications.The code is flexible enough to be amended for retrieving tweets from other user(s) and data for other stocks. 
 
 ## Introduction
@@ -127,11 +127,13 @@ New features can be added to the script for giving information about the nature 
 #### [The Bankrate Trump Index: How the president’s words affect stocks]( https://www.bankrate.com/investing/the-bankrate-trump-index-how-the-presidents-words-affect-stocks/)
 #### [Amazon stock extends fall after Trump tweets ‘concerns’ about U.S. Postal Service, taxes]( https://www.marketwatch.com/story/amazon-shares-keep-falling-after-trump-tweets-concerns-about-us-postal-service-taxes-2018-03-29)
 
-
 ## Acknowledgment
 ------------
 * #### Martin Skarzynski, Michael & Ben
-* #### Anup Mathur
 
-Please send any questions/comments to atimahs16 at gmail dot com.  📢
+## Collaborators
+------------
+#### [Anup Mathur](https://github.com/anupmath)
+
+Please send any questions/comments to us: anupmath at gmail dot com or atimahs16 at gmail dot com.  📢
 
